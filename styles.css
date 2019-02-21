@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
 }
@@ -8,7 +12,6 @@ body {
     grid-template-columns: 1fr 2fr;
     grid-template-areas:
         "sidebar content";
-    color: #444;
 }
 
 .box {
@@ -17,8 +20,40 @@ body {
     padding: 20px;
 }
 
-#singleview {
-    display: none;
+/*** KEYFRAMES ***/
+
+.pulse {
+    animation-name: pulse_kf;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+
+@keyframes pulse_kf {
+    0% {
+        transform: scale(0.97);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/*** LANDING PAGE ***/
+
+.landingpage img {
+    width: 100%;
+    height: 716px;
+    position: relative;
+}
+
+.top_layer img {
+    width: 30%;
+    position: absolute;
+    top: 144px;
+    left: 504px;
 }
 
 /*** SIDEBAR ***/
@@ -30,6 +65,7 @@ body {
     justify-content: center;
     align-items: center;
     align-content: flex-start;
+    position: sticky;
 }
 
 
@@ -50,7 +86,7 @@ button {
     font-size: 20px;
     font-family: 'Arial', sans-serif;
     font-weight: 900;
-    margin: 2%;
+    margin: 3%;
 }
 
 button:hover {
@@ -65,6 +101,8 @@ button:active {
 
 .content {
     grid-area: content;
+    padding-left: auto;
+    padding-right: auto;
 }
 
 h1 {
@@ -112,5 +150,99 @@ p {
 }
 
 .billede img {
-    width: 50%;
+    width: 80%;
+}
+
+/*** BURGERMENU ***/
+
+.hidden {
+    transform: scale(0);
+}
+
+.menuknap {
+    display: none;
+    color: rgb(233, 61, 252);
+}
+
+/*** SMALL DESKTOPS ***/
+
+@media only screen and (max-width: 1300px) {
+    .landingpage {
+        display: none;
+    }
+}
+
+
+/*** TABLET ***/
+
+@media only screen and (max-width: 768px) {
+    .wrapper {
+        display: block;
+    }
+
+    #liste {
+        display: block;
+    }
+
+    .billede img {
+        width: 100%;
+    }
+
+    .sidebar {
+        display: inline-block;
+    }
+
+    .sidebar img {
+        width: 25%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .menu {
+        margin-top: 2%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    button {
+        padding: 0;
+        font-size: 12px;
+        justify-content: center;
+    }
+
+}
+
+/*** MOBILE ***/
+
+@media only screen and (max-width: 480px) {
+    .wrapper {
+        display: block;
+    }
+
+    #liste {
+        display: block;
+
+    }
+
+    .billede img {
+        width: 100%;
+    }
+
+    .sidebar img {
+        width: 15%;
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        transform: none;
+        transition: transform 0s;
+        position: static;
+    }
+
+    .menuknap {
+        display: block;
+    }
 }

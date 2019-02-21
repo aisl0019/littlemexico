@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="da">
 
 <head>
     <meta charset="utf-8">
@@ -15,20 +15,20 @@
             <a href="index.html">
                 <img src="img/logo.png" alt="logo">
             </a>
-
             <nav class="menu">
                 <button class="filter valgt" data-hold="alle">Alle</button>
-                <br>
                 <button class="filter" data-hold="tacos">Tacos</button>
-                <br>
                 <button class="filter" data-hold="burritos">Burritos</button>
-                <br>
                 <button class="filter" data-hold="nachos">Nachos</button>
-                <br>
                 <button class="filter" data-hold="desserter">Desserter</button>
-                <br>
                 <button class="filter" data-hold="drikke">Drikkevarer</button>
             </nav>
+        </div>
+
+        <div class="box content">
+            <h1>Menu</h1>
+
+            <section id="liste"></section>
         </div>
 
         <div class="box content">
@@ -36,7 +36,6 @@
                 <div class="indhold"></div>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -50,7 +49,7 @@
 
         function start() {
             console.log("starter");
-            let dest = document.querySelector("#liste");
+            let dest = document.querySelector("#liste_singleView");
 
             async function getJson() {
                 console.log("getting json");
@@ -67,18 +66,20 @@
             function åbn() {
                 console.log("åbner indhold");
                 document.querySelector(".indhold").innerHTML = `
-                    <div class="ret">
+                    <div class="billede">
                         <img src="img/${ret.billede}.png">
+                    </div>
+                    <div class="ret">
                         <h2>${ret.navn}</h2>
                         <p>${ret.beskrivelse}</p>
-                        <h3>Pris: ${ret.pris},-</h3>
+                        <br>
+                        <h3>${ret.pris},-<h3>
                     </div>`;
             }
 
             getJson();
 
         }
-
     </script>
 </body>
 

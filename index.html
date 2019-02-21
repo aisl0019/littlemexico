@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="da">
 
 <head>
     <meta charset="utf-8">
@@ -10,39 +10,130 @@
 </head>
 
 <body>
-    <div id="singleview">
-        <div id="luk"><button>X</button></div>
-        <div id="indhold"></div>
+    <div class="landingpage">
+        <img src="img/brickwall.png" alt="landingpage">
+    </div>
+    <div class="top_layer">
+        <a href="#main">
+            <img src="img/logo.png" alt="logo_1">
+        </a>
     </div>
 
-    <div class="wrapper">
-        <div class="box sidebar">
-            <img src="img/logo.png" alt="logo">
+    <section id="main">
+        <div class="wrapper">
+            <div class="box sidebar">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="logo_2">
+                </a>
 
-            <nav class="menu">
-                <button class="filter valgt" data-hold="alle">Alle</button>
-                <br>
-                <button class="filter" data-hold="tacos">Tacos</button>
-                <br>
-                <button class="filter" data-hold="burritos">Burritos</button>
-                <br>
-                <button class="filter" data-hold="nachos">Nachos</button>
-                <br>
-                <button class="filter" data-hold="desserter">Desserter</button>
-                <br>
-                <button class="filter" data-hold="drikke">Drikkevarer</button>
-            </nav>
+                <nav>
+                    <div class="menuknap">☰</div>
+                    <div class="menu">
+                        <button class="filter valgt" data-hold="alle">Alle</button>
+                        <button class="filter" data-hold="tacos">Tacos</button>
+                        <button class="filter" data-hold="burritos">Burritos</button>
+                        <button class="filter" data-hold="nachos">Nachos</button>
+                        <button class="filter" data-hold="desserter">Desserter</button>
+                        <button class="filter" data-hold="drikke">Drikkevarer</button>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="box content">
+                <h1>Menu</h1>
+
+                <section id="liste"></section>
+            </div>
+
         </div>
+    </section>
 
-        <div class="box content">
-            <h1>Menu</h1>
+    <script>
+        let alleRetter = [];
+        let filter = "alle";
 
-            <section id="liste"></section>
-        </div>
+        document.addEventListener("DOMContentLoaded", start);
 
-    </div>
+        function start() {
+            console.log("starter");
+            let dest = document.querySelector("#liste");
+            let temp = document.querySelector("template");
 
-    <script src="script.js"></script>
+            async function getJson() {
+                console.log("henter json");
+                let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1h8J_KUMMX_texxU-bKC3tNCeTH-ozf47qUHSfinhzJY");
+                alleRetter = await jsonData.json();
+                visRetter();
+            }
+
+            function visRetter() {
+                console.log("viser retter");
+                dest.innerHTML = "";
+                alleRetter.forEach(ret => {
+                    if (filter == "alle" || filter == ret.kategori) {
+                        let template = `
+                            <div class="ret">
+                                <h2>${ret.navn}</h2>
+                                <p>${ret.beskrivelse}</p>
+                                <br>
+                                <h3>${ret.pris},-<h3>
+                            </div>
+                            <div class="billede">
+                                <img src="img/${ret.billede}.png">
+                            </div>`
+                        dest.insertAdjacentHTML("beforeend", template);
+                        dest.lastElementChild.addEventListener("click", () => {
+                            location.href = "singleView.html?id=" + ret.id;
+                        });
+                    }
+                })
+            }
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+
+            function filtrering() {
+                console.log("filtrerer retter");
+                filter = this.getAttribute("data-hold");
+                document.querySelector("h1").textContent = this.textContent;
+                document.querySelectorAll(".filter").forEach(elm => {
+                    elm.classList.remove("valgt");
+                })
+                this.classList.add("valgt");
+                visRetter();
+            }
+
+            getJson();
+
+        }
+
+        window.addEventListener("load", sidenVises);
+
+        let erSkjult = document.querySelector(".menu").classList.contains("hidden");
+
+        function sidenVises() {
+            console.log("Siden vises!");
+
+            // klik på menu-knap
+            document.querySelector(".menuknap").addEventListener("click", toggleMenu);
+        }
+
+        function toggleMenu() {
+            console.log("Toggle menu");
+
+            document.querySelector(".menu").classList.toggle("hidden");
+
+            if (erSkjult == true) {
+                // menu er skjult, lav knap til burger
+                document.querySelector(".menuknap").textContent = "☰";
+            } else {
+                // menu er vist, lav knap til kryds
+                document.querySelector(".menuknap").textContent = "X";
+            }
+        }
+
+    </script>
 </body>
 
 </html>

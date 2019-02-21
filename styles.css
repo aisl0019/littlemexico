@@ -23,15 +23,15 @@ body {
 .sidebar {
     grid-area: sidebar;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
 }
 
-.sidebar .menu {
-    width: 50%
-}
 
 .sidebar img {
-    width: 70%;
+    width: 100%;
+    display: block;
 }
 
 .menu {
@@ -68,4 +68,18 @@ h1 {
     font-weight: 900;
     font-size: 49px;
     color: rgb(0 0 0);
+}
+
+
+/*** RANDOM ***/
+
+#liste {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.ret {
+    background-color: white;
+    margin: 1%;
 }

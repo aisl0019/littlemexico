@@ -9,7 +9,7 @@ function start() {
     let temp = document.querySelector("template");
 
     async function getJson() {
-        let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
+        let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1h8J_KUMMX_texxU-bKC3tNCeTH-ozf47qUHSfinhzJY");
         alleRetter = await jsonData.json();
         visRetter();
     }
@@ -21,9 +21,9 @@ function start() {
             if (filter == "alle" || filter == ret.kategori) {
                 let template = `
                             <div class="ret">
-                                <img src="imgs/small/${ret.billede}-sm.jpg">
+                                <img src="img/${ret.billede}.png">
                                 <h2>${ret.navn}</h2>
-                                <p>${ret.kort} <br><br> Pris: ${ret.pris},-</p>
+                                <p>${ret.beskrivelse} <br><br> Pris: ${ret.pris},-</p>
                             </div>`
                 dest.insertAdjacentHTML("beforeend", template);
                 dest.lastElementChild.addEventListener("click", () => {
@@ -34,9 +34,9 @@ function start() {
                     console.log("åbner singleview");
                     document.querySelector("#indhold").innerHTML = `
                             <div class="ret">
-                                <img src="imgs/large/${ret.billede}.jpg">
+                                <img src="img/${ret.billede}.png">
                                 <h2>${ret.navn}</h2>
-                                <p>${ret.kort} <br><br> Pris: ${ret.pris},-</p>
+                                <p>${ret.beskrivelse} <br><br> Pris: ${ret.pris},-</p>
                             </div>`;
                     document.querySelector("#singleview").style.display = "block";
                 }

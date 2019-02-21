@@ -12,10 +12,13 @@ body {
 }
 
 .box {
-    background-color: #444;
     color: #fff;
     border-radius: 5px;
     padding: 20px;
+}
+
+#singleview {
+    display: none;
 }
 
 /*** SIDEBAR ***/
@@ -26,6 +29,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    align-content: flex-start;
 }
 
 
@@ -70,16 +74,43 @@ h1 {
     color: rgb(0 0 0);
 }
 
+h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: rgb(0 0 0);
+}
 
-/*** RANDOM ***/
+h3 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(255 226 0);
+    margin: 0;
+}
+
+p {
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(0 0 0);
+}
 
 #liste {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
 
 }
 
 .ret {
-    background-color: white;
-    margin: 1%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+}
+
+.billede {
+    margin-bottom: 5%;
+}
+
+.billede img {
+    width: 50%;
 }

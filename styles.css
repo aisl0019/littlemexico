@@ -95,6 +95,10 @@ button:active {
     color: rgb(233, 61, 252);
 }
 
+button:visited {
+    color: rgb(233, 61, 252);
+}
+
 /*** CONTENT ***/
 
 .content {

@@ -147,6 +147,7 @@ p {
 
 .singleview .indhold {
     width: 50%;
+    padding: 0;
 }
 
 /*** HOVER OVERLAY I MENU ***/
@@ -167,6 +168,10 @@ p {
 
 .text p {
     margin: 0;
+    padding: 10%;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
 }
 
 /*** BURGERMENU ***/
@@ -233,8 +238,19 @@ p {
 
     h1 {
         text-align: center;
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
     }
 
     .singleview .indhold {
@@ -265,21 +281,27 @@ p {
     }
 
     .menu {
-        display: none;
         flex-direction: column;
         transform: none;
         transition: transform 0s;
         position: static;
     }
 
-    .menuknap {
-        display: block;
-    }
-
     h1 {
         text-align: center;
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
     }
 
     .singleview .indhold {

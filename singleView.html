@@ -26,8 +26,6 @@
         </div>
 
         <div class="box content">
-            <h1>Menu</h1>
-
             <section id="liste"></section>
         </div>
 
@@ -41,6 +39,7 @@
     <script>
         let urlParams = new URLSearchParams(window.location.search);
         let id = urlParams.get("id");
+        console.log("ID", id);
 
         let alleRetter = [];
         let ret;
@@ -57,7 +56,10 @@
                 alleRetter = await jsonData.json();
 
                 alleRetter.forEach(obj => {
-                    ret = obj;
+                    if (id == obj.id) {
+                        ret = obj;
+
+                    }
                 })
 
                 åbn();
@@ -80,6 +82,7 @@
             getJson();
 
         }
+
     </script>
 </body>
 

@@ -15,7 +15,7 @@
     </div>
     <div class="top_layer">
         <a href="#main">
-            <img src="img/logo.png" alt="logo_1">
+            <img src="img/logo.png" class="pulse" alt="logo_1">
         </a>
     </div>
 
@@ -28,7 +28,7 @@
 
                 <nav>
                     <div class="menuknap">☰</div>
-                    <div class="menu">
+                    <div class="menu hide">
                         <button class="filter valgt" data-hold="alle">Alle</button>
                         <button class="filter" data-hold="tacos">Tacos</button>
                         <button class="filter" data-hold="burritos">Burritos</button>
@@ -72,14 +72,11 @@
                 alleRetter.forEach(ret => {
                     if (filter == "alle" || filter == ret.kategori) {
                         let template = `
-                            <div class="ret">
-                                <h2>${ret.navn}</h2>
-                                <p>${ret.beskrivelse}</p>
-                                <br>
-                                <h3>${ret.pris},-<h3>
-                            </div>
                             <div class="billede">
                                 <img src="img/${ret.billede}.png">
+                                <div class="text">
+                                    <p>${ret.navn}</p>
+                                </div>
                             </div>`
                         dest.insertAdjacentHTML("beforeend", template);
                         dest.lastElementChild.addEventListener("click", () => {
@@ -132,7 +129,6 @@
                 document.querySelector(".menuknap").textContent = "X";
             }
         }
-
     </script>
 </body>
 
